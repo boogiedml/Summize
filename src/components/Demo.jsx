@@ -38,7 +38,7 @@ const Demo = () => {
   const handleCopy = (copyUrl) => {
     setCopied(copyUrl);
     navigator.clipboard.writeText(copyUrl);
-    setTimeout(() => setCopied(false), 3000)
+    setTimeout(() => setCopied(""), 3000);
   };
 
   return (
@@ -77,9 +77,12 @@ const Demo = () => {
               onClick={() => setArticle(item)}
               className="link_card"
             >
-              <div className="copy_btn shadow-inner">
+              <div
+                className="copy_btn shadow-inner"
+                onClick={() => handleCopy(item.url)}
+              >
                 <img
-                  src={copy}
+                  src={copied === item.url ? tick : copy}
                   alt="copy_icon"
                   className="w-[40%] h-[40%] object-contain"
                 />
